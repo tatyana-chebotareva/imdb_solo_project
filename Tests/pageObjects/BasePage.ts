@@ -7,8 +7,11 @@ import { Actions, By, Key, until, WebDriver, WebElement } from "selenium-webdriv
 export class BasePage {
 
   driver: WebDriver;
-    url: string;
+    url: string = "https://www.imdb.com/";
   footer: By;
+
+  signInBtn: By = By.xpath('//div[text()="Sign In"]');
+  
 
   /**
    * Create a basepage
