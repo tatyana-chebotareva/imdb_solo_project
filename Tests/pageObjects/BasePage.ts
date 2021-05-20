@@ -12,6 +12,7 @@ export class BasePage {
 
   signInBtn: By = By.xpath('//div[text()="Sign In"]');
   
+  searchFld: By = By.id("suggestion-search");
 
   /**
    * Create a basepage
@@ -77,6 +78,15 @@ export class BasePage {
     var element: WebElement = await this.driver.findElement(this.footer);
     await this.driver.executeScript("arguments[0].scrollIntoView();", element);
     await this.driver.sleep(2000);
+  }
+
+  async search(term: string) {
+    await this.sendKeys(this.searchFld, term);
+    await this.addKeys(this.searchFld, Key.ENTER);
+    await this.driver.sleep (2000);
+    var firstResult: WebElement = await this.driver.findElement(By.xpath("//div[2]/table/tbody/tr[1]/td[2][@class='result_text']/a"));
+    var text: string = await firstResult.getText();
+    expect(text.toLowerCase()).toBe(term.toLowerCase());
   }
 
 }

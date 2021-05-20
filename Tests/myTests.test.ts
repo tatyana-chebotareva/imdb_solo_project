@@ -1,7 +1,6 @@
 import { BasePage } from "./pageObjects/BasePage";
 import { WebDriver, Builder, Capabilities, By, Key } from "selenium-webdriver";
 import { SignInPage } from "./pageObjects/SignInPage";
-import * as dataaset from "./data/dataset.json";
 
 const chromedriver = require("chromedriver");
 
@@ -17,14 +16,7 @@ beforeAll(async () => {
     await driver.get(basePage.url); // open main page
 });
 
-describe("My test suite", () => {
-
-    /*
-    // https://dmutah.atlassian.net/browse/***
-    test("Open the main page", async () => {
-        //
-    })
-    */
+describe("Logging in and out test suite", () => {
 
     test("Sign in using Google account", async () => {
         await signInPage.signInWithGoogle("QA","qa.devmountain","21Devmtnqa");
@@ -40,14 +32,6 @@ describe("My test suite", () => {
     test("Sign in using imdb account", async () => {
         await signInPage.signInWithIMDb("Tester","mail.tatiana.c@gmail.com","21Devmtnqa");
     })
-
-    /*
-    dataaset.forEach((item) => {
-        test("No results for bad search terms", async () => {
-            //await basePage.search(item.term); // search itself
-        })
-    })
-    */
 
 })
 
