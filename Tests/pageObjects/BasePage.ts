@@ -11,6 +11,7 @@ export class BasePage {
   footer: By;
 
   signInBtn: By = By.xpath('//div[text()="Sign In"]');
+  watchlistBtn: By = By.xpath('//div[text()="Watchlist"]');
   
   searchFld: By = By.id("suggestion-search");
 
@@ -89,4 +90,7 @@ export class BasePage {
     expect(text.toLowerCase()).toBe(term.toLowerCase());
   }
 
+  async viewDefaultWatchlist() {
+    return await this.click(this.watchlistBtn);
+  }
 }
