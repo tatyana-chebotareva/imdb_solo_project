@@ -30,7 +30,6 @@ export class MoviePage extends BasePage{
         expect(await (await this.driver.findElement(this.noRate)).getText()).toBe("Rate This");
     }
 
-
     async addToWatchlist () {
         var initialCount: number =+ await (await this.driver.findElement(this.watchListCounter)).getText();
         await this.click(this.wlRibbon);
@@ -55,4 +54,6 @@ export class MoviePage extends BasePage{
         expect(await (await this.driver.findElement(this.wlRibbon)).getAttribute("title")).toContain("Click to add to watchlist");
         return;
     }
+
+    
 }
