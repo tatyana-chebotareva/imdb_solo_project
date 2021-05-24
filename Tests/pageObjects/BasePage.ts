@@ -15,6 +15,9 @@ export class BasePage {
   
   searchFld: By = By.id("suggestion-search");
 
+  allSearchOpts: By = By.xpath("//div[text()='All']");
+  advancedSearch: By = By.xpath("//a[span[text()='Advanced Search']]");
+
   /**
    * Create a basepage
    * @param {WebDriver} driver - the driver object the page object should interact with
@@ -92,5 +95,11 @@ export class BasePage {
 
   async viewDefaultWatchlist() {
     return await this.click(this.watchlistBtn);
+  }
+
+  async goToAdvancedSearch(){
+    await this.click(this.allSearchOpts);
+    await this.click(this.advancedSearch);
+    await this.driver.sleep(2000);
   }
 }
