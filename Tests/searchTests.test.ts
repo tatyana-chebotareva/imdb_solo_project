@@ -22,7 +22,6 @@ beforeAll(async () => {
 
 describe("Search test suite", () => {
 
-    /*
     movies.forEach((movie) => {
         test(`Search for a movie "${movie.title}" by title`, async () => {
             await basePage.search(movie.title);
@@ -38,26 +37,23 @@ describe("Search test suite", () => {
         })
     })
     
-
     test(`Advanced search by title`, async () => {
         await basePage.goToAdvancedSearch();
         await advancedSearch.checkPageIsLoaded();
         await advancedSearch.advTitleSearch(2015,2018,8.0,100000,[3,7]);
-        await advancedSearch.checkResultsPageIsLoaded();
-        await advancedSearch.checkResults(2015,2018,100000,[3,7]);
-        await driver.sleep(2000);
+        await advancedSearch.checkATSResultsPageIsLoaded();
+        await advancedSearch.checkATSResults(2015,2018,100000,[3,7]);
+        await driver.sleep(1000);
     })
 
-*/
     test(`Advanced search by name`, async () => {
         await basePage.goToAdvancedSearch();
         await advancedSearch.checkPageIsLoaded();
-        await advancedSearch.advTitleSearch(2015,2018,8.0,100000,[3,7]);
-        await advancedSearch.checkResultsPageIsLoaded();
-        await advancedSearch.checkResults(2015,2018,100000,[3,7]);
-        await driver.sleep(2000);
+        await advancedSearch.advNameSearch("Anna",1980,1985);
+        await advancedSearch.checkANSResultsPageIsLoaded();
+        await advancedSearch.checkANSResults("Anna",1980,1985);
+        await driver.sleep(1000);
     })
-
 
 })
 
