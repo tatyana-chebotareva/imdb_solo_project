@@ -1,4 +1,5 @@
 import { Actions, By, Key, until, WebDriver, WebElement } from "selenium-webdriver";
+import { SeleniumServer } from "selenium-webdriver/remote";
 
 /**
  * This is a class representing a BASE PAGE, 
@@ -17,6 +18,64 @@ export class BasePage {
 
   allSearchOpts: By = By.xpath("//div[text()='All']");
   advancedSearch: By = By.xpath("//a[span[text()='Advanced Search']]");
+
+  // Menu items
+
+  mainMenu: By = By.id("imdbHeader-navDrawerOpen--desktop")
+
+  menuMovies: Array<string> = [
+    "Release Calendar", // 0
+    "DVD & Blu-ray Releases", // 1
+    "Top Rated Movies", // 2
+    "Most Popular Movies", // 3
+    "Browse Movies by Genre", // 4
+    "Top Box Office", // 5
+    "Showtimes & Tickets", // 6
+    "In Theaters", // 7
+    "Coming Soon", // 8
+    "Movie News", // 9
+    "India Movie Spotlight", // 10
+  ]
+
+  menuCelebs: Array<string> = [
+    "Born Today", // 0
+    "Most Popular Celebs", // 1
+    "Celebrity News" // 2
+  ]
+
+  menuTVShows: Array<string> = [
+    "What's on TV & Streaming", // 0
+    "Top Rated Shows", // 1
+    "Most Popular Shows", // 2
+    "Browse TV Shows by Genre", // 3
+    "TV News", // 4
+    "India TV Spotlight" // 5
+  ]  
+
+  menuWatch: Array<string> = [
+    "What to Watch", // 0
+    "Latest Trailers", // 1
+    "IMDb TV", // 2
+    "IMDb Originals", // 3
+    "IMDb Picks", // 4
+    "IMDb Podcasts" // 5
+  ]
+
+  menuAwardsEvents: Array<string> = [
+    "Oscars", // 0
+    "Best Picture Winners", // 1
+    "Golden Globes", // 2
+    "Emmys", // 3
+    "APA Heritage Month", // 4
+    "STARmeter Awards", // 5
+    "San Diego Comic-Con", // 6
+    "New York Comic-Con", // 7
+    "Sundance Film Festival", // 8
+    "Toronto Int'l Film Festival", // 9
+    "Awards Central", // 10
+    "Festival Central", // 11
+    "All Events" // 12
+  ]
 
   /**
    * Create a basepage
@@ -102,4 +161,12 @@ export class BasePage {
     await this.click(this.advancedSearch);
     await this.driver.sleep(2000);
   }
+
+  async goToMenuItem(menuItem: string) {
+    await this.click(this.mainMenu);
+    await this.driver.sleep(1000)
+    await this.click(By.xpath(`(//*[@class="ipc-list-item__text"][text()="${menuItem}"])[last()]/..`))
+    await this.driver.sleep(2000)
+  }
+
 }
