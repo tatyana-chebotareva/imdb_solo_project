@@ -1,0 +1,214 @@
+{
+	"info": {
+		"_postman_id": "2279ae38-af01-46d3-8283-628e7b891ac6",
+		"name": "IMDb RapidAPI Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get details for title",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Spotlight details\", function () {\r",
+							"  var movieDetails = pm.response.json();\r",
+							"  pm.expect(movieDetails.id).to.equal(`/title/tt1895587/`);\r",
+							"  pm.expect(movieDetails.title).to.equal(`Spotlight`);\r",
+							"  pm.expect(movieDetails.year).to.equal(2015);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ford v Ferrari details\", function () {\r",
+							"  var movieDetails = pm.response.json();\r",
+							"  pm.expect(movieDetails.id).to.equal(`/title/tt1950186/`);\r",
+							"  pm.expect(movieDetails.title).to.equal(`Ford v Ferrari`);\r",
+							"  pm.expect(movieDetails.year).to.equal(2019);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Movie details recieved\", function () {\r",
+							"  var movieDetails = pm.response.json();\r",
+							"  pm.expect(movieDetails.id).not.to.equal(undefined);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/title/get-details/?tconst={{SpotlightID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"title",
+						"get-details",
+						""
+					],
+					"query": [
+						{
+							"key": "tconst",
+							"value": "{{FordVFerrariID}}",
+							"description": "Ford v Ferrari movie",
+							"disabled": true
+						},
+						{
+							"key": "tconst",
+							"value": "{{SpotlightID}}",
+							"description": "Spotlight movie"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get actors' bio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Christian Bale Bio\", function () {\r",
+							"  var actorBio = pm.response.json();\r",
+							"  pm.expect(actorBio.id).to.equal(`/name/nm0000288/`);\r",
+							"  pm.expect(actorBio.name).to.equal(`Christian Bale`);\r",
+							"  pm.expect(actorBio.birthDate).to.equal(`1974-01-30`);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Mark Ruffalo Bio\", function () {\r",
+							"  var actorBio = pm.response.json();\r",
+							"  pm.expect(actorBio.id).to.equal(`/name/nm0749263/`);\r",
+							"  pm.expect(actorBio.name).to.equal(`Mark Ruffalo`);\r",
+							"  pm.expect(actorBio.birthDate).to.equal(`1967-11-22`);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Bio recieved\", function () {\r",
+							"  var actorBio = pm.response.json();\r",
+							"  pm.expect(actorBio.id).not.to.equal(undefined);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 700ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/actors/get-bio?nconst={{MRID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"actors",
+						"get-bio"
+					],
+					"query": [
+						{
+							"key": "nconst",
+							"value": "{{CBID}}",
+							"disabled": true
+						},
+						{
+							"key": "nconst",
+							"value": "{{MRID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "84b17cb765msh1ce0cb6bdd6e11fp1af73cjsn6ec764bba57d",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "x-rapidapi-key",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "https://imdb8.p.rapidapi.com"
+		},
+		{
+			"key": "x-rapidapi-host",
+			"value": "imdb8.p.rapidapi.com"
+		},
+		{
+			"key": "useQueryString",
+			"value": "true"
+		},
+		{
+			"key": "SpotlightID",
+			"value": "tt1895587"
+		},
+		{
+			"key": "FordVFerrariID",
+			"value": "tt1950186"
+		},
+		{
+			"key": "CBID",
+			"value": "nm0000288"
+		},
+		{
+			"key": "MRID",
+			"value": "nm0749263"
+		}
+	]
+}

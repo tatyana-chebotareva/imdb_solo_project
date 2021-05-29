@@ -24,26 +24,25 @@ beforeAll(async () => {
 
 describe("Watchlist Test Suite", () => {
     
-    test("Add to watchlist", async () => {
-        await driver.get("https://www.imdb.com/title/tt0473705")
-        await moviePage.addToWatchlist()
-        await driver.sleep(2000)
-    })
-
-    test("Remove from watchlist", async () => {
-        await moviePage.removeFromWatchlist()
-        await driver.sleep(2000)
-    })
-
     test("View watchlist", async () => {
         await basePage.viewDefaultWatchlist();
         await driver.sleep(2000)
         await watchlistPage.checkListIsLoaded("Your Watchlist");        
     })
 
-    test ("Refine by Release Year", async () => {
-        //await watchlistPage.clearRefine()
-        await watchlistPage.refineByYear(2013,2015);
+    test ("Sort by IMDb Rating", async () => {
+        await watchlistPage.sortByIMDbRating();
+        await driver.sleep(2000)
+    })
+
+    test ("Sort by Release Date", async () => {
+        await watchlistPage.sortByYear();
+        await driver.sleep(2000)
+    })
+
+    test ("Sort by Runtime", async () => {
+        await watchlistPage.sortByRuntime();
+        await driver.sleep(2000)
     })
 
 })
